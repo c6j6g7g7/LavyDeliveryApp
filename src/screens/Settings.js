@@ -1,44 +1,89 @@
 // Settings.js
 
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
-import {  Button, Badge} from "react-native-elements";
+import { StyleSheet, View, Text, Image, ListView, ScrollView, } from 'react-native';
+import { Card, ListItem, Button, Icon } from 'react-native-elements';
+
+
+const users = [
+ //... // more users here
+ {
+   order: '1',
+   name: 'Andres Restrepo',
+   phone: 5555555,
+   address: 'Calle 119 #13-22'
+ },
+ {
+   order: '2',
+    name: 'Lina',
+    phone: 34343434,
+    address: 'Av. 7 # 102B-14'
+ },
+ {
+   order: '3',
+    name: 'Martha',
+    phone: 5555555,
+    address: 'Calle 156 #70-22'
+ },
+]
+
+
+// Row comparison function
+const rowHasChanged = (r1, r2) => r1.id !== r2.id
+
+// DataSource template object
+const ds = new ListView.DataSource({rowHasChanged})
 
 export class Settings extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Lavy Delivery - Order List',
+      //title: navigation.getParam('otherParam', 'A Nested Details Screen'),
+    };
+  };
+
+  state = {
+      dataSource: ds.cloneWithRows(users)
+    }
   render() {
     return (
-      <View>
+        <ScrollView >
+          <ListView
+             dataSource={this.state.dataSource}
+             renderRow={(data) => {
+               return (
+                 <View key={data.order} style={styles.box}>
+                           <Image
+                             style={styles.icon}
+                             resizeMode="cover"
+                             source={require('../images/icon-pesar_prendas.png')}
+                           />
+                           <Text style={styles.name}>
+                           Dirección: {data.address}
+                           </Text>
+                           <Text style={styles.name}>{data.name}</Text>
 
-        <Badge
-          value={3}
-          textStyle={{ color: 'orange' }}
-        />
-        <View id="2">
-          <Image source={require('../images/icon-verifica_prenda.png')} style={styles.icon} />
-          <Text style={styles.texto}>3.1 Verificar prendas</Text>
-        </View>
+                  </View>
+               )
+             }
+           }
+           />
+         </ScrollView>
 
-        <Image source={require('../images/icon-tomar_foto.png')} style={styles.icon} />
-        <Text>3.2 Tomar Foto</Text>
-
-        <Image source={require('../images/icon-pesar_prendas.png')} style={styles.icon} />
-        <Text>3.3 Pesar Prendas</Text>
-
-        <Image source={require('../images/icon-confirmar_orden.png')} style={styles.icon} />
-        <Text>3.4 Confirmar Orden</Text>
-
-      </View>
-    )
+      );
+    }
   }
-};
 
-const styles = StyleSheet.create({
-  container: {
-      width: '100%',
-      height: '100%',
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: 'rgba(0,0,0,0)',
+    },
+    image: {
+      width: 300,
+      height: 150
     },
     icon: {
       position: 'relative',
@@ -47,15 +92,10 @@ const styles = StyleSheet.create({
       alignItems: 'center',
 
     },
-    texto: {
-      position: 'absolute',
-
-    },
-    row: {
+    box: {
       flex: 1,
       flexDirection: 'row'
     },
-
-});
+  });
 
 export default Settings;
