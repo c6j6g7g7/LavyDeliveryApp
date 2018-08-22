@@ -6,9 +6,9 @@ import { View, Text, Button, Image, StyleSheet } from 'react-native';
 import { createBottomTabNavigator, TabBarBottom } from 'react-navigation';
 
 //import Home from '../Screen/Home';
-import Settings from './Settings';
 import OrderList from './OrderListScreen';
-import Verificar from './Verificar';
+import Recoger from './RecogerScreen';
+import Verificar from './VerificarScreen';
 
 export class Home extends Component {
   render() {
@@ -21,8 +21,8 @@ export class Home extends Component {
 
 
 const TabNavigator = createBottomTabNavigator({
-  SettingScreen: {
-    screen: Settings,
+  OrderListScreen: {
+    screen: OrderList,
     navigationOptions: { title: '1. Dirigete',
       tabBarIcon: () => (
         <Image style={styles.icon}
@@ -34,8 +34,8 @@ const TabNavigator = createBottomTabNavigator({
       },
       title: 'Lavy Delivery - Revisa tus Ordenes',
   },
-  OrderListScreen: {
-    screen: OrderList,
+  RecogerScreen: {
+    screen: Recoger,
     navigationOptions: { title: '2. Recoger',
       tabBarIcon: () => (
         <Image style={styles.icon}

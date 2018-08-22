@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableHighlight, TouchableOpacity, Al
 import {  Button, Badge} from "react-native-elements";
 import Timeline from 'react-native-timeline-listview';
 
-export class Verificar extends Component {
+export class VerificarScreen extends Component {
 
   pressCheckClothes2(){
     Alert.alert('Verificar Prenda', 'Aca verificas las prendas');
@@ -37,7 +37,7 @@ export class Verificar extends Component {
      }
 
   render() {
-    return(
+    /*return(
       <Timeline
        onEventPress={this.onEventPress}
        data={this.data}
@@ -45,31 +45,35 @@ export class Verificar extends Component {
        circleSize={60}
        circleColor='rgba(255,255,255,1)'
      />
-    )
-    /*return (
+    )*/
+    return (
       <View style={styles.wrapper}>
         <View style={styles.box}>
-        <Badge
-          value={3}
-          textStyle={{ color: 'orange' }}
-        />
-        <Text>Verificar</Text>
+          <Badge
+            value={3}
+            textStyle={{ color: 'orange' }}
+          />
+          <Text>Verificar</Text>
         </View>
 
 
-        <View id="2" style={styles.box}>
+        <View id="21" style={styles.box}>
           <TouchableOpacity onPress={() => this.pressCheckClothes2()} >
             <Image source={require('../images/icon-verifica_prenda.png')} style={styles.icon} />
-            <Text>3.1 Verificar prendas</Text>
           </TouchableOpacity>
-        </View>
-
-          <View id="3" style={styles.box}>
-          <TouchableOpacity  onPress={() => this.pressTakePhoto()}>
-            <Image source={require('../images/icon-tomar_foto.png')} style={styles.icon} />
-            <Text>3.2 Tomar Foto</Text>
+          <TouchableOpacity onPress={() => this.pressCheckClothes2()} >
+            <Text>3.1 Verificar prendas</Text>
             </TouchableOpacity>
           </View>
+
+          <TouchableOpacity  onPress={() => this.pressTakePhoto()}>
+          <View id="3" style={styles.box}>
+
+            <Image source={require('../images/icon-tomar_foto.png')} style={styles.icon} />
+            <Text>3.2 Tomar Foto</Text>
+
+          </View>
+            </TouchableOpacity>
 
           <View id="4" style={styles.box}>
           <TouchableOpacity  onPress={() => this.pressClothes()}>
@@ -81,12 +85,12 @@ export class Verificar extends Component {
           <View id="5" style={styles.box}>
           <TouchableOpacity  onPress={() => this.pressCheckOrder()}>
           <Image source={require('../images/icon-confirmar_orden.png')} style={styles.icon} />
-            <Text style={styles.texto}>3.4 Confirmar Orden</Text>
+            <Text >3.4 Confirmar Orden</Text>
             </TouchableOpacity>
           </View>
 
     </View>
-  )*/
+  )
   }
 };
 
@@ -118,4 +122,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Verificar;
+export default VerificarScreen;

@@ -54,11 +54,25 @@ export class LoginScreen extends Component {
 
   render() {
 //    const { navigate } = this.props.navigation;
+/*
+<FormInput placeholder="Nombre y Apellido"
+inputStyle={{
+
+        backgroundColor: "#fff",
+        borderColor: "#fd76bb",
+        borderWidth: 2,
+        borderRadius: 15,
+        color: 'orange',
+        color: 'orange'
+
+      }} />
+*/
     return (
 
         <ImageBackground source={require('../images/background.jpg')} style={styles.container} >
           <Image source={require('../images/LOGO.png')} style={styles.logo} />
-          <FormInput placeholder="Nombre y Apellido" color='white' />
+          <FormInput placeholder="Nombre y Apellido"
+           />
 
           <FormInput placeholder="Correo" />
 
@@ -77,6 +91,7 @@ export class LoginScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
+      flex:1,
       width: '100%',
       height: '100%',
       alignItems: 'center',
