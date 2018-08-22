@@ -28,8 +28,11 @@ const TabNavigator = createBottomTabNavigator({
         <Image style={styles.icon}
           source={require('../images/icon-dirigete.png')}
           />
-        )
+        ),
+        Label: 'Prueba',
+
       },
+      title: 'Lavy Delivery - Revisa tus Ordenes',
   },
   OrderListScreen: {
     screen: OrderList,
@@ -41,6 +44,7 @@ const TabNavigator = createBottomTabNavigator({
           />
         )
       },
+      Label: 'Prueba2',
  },
  VerificarScreen: {
    screen: Verificar,
@@ -52,6 +56,7 @@ const TabNavigator = createBottomTabNavigator({
          />
        )
      },
+     Label: 'Prueba3',
    }
 },
 {
