@@ -1,33 +1,50 @@
-// App.js
-
 import React, { Component } from 'react';
-/*import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';*/
+
 import { createStackNavigator } from 'react-navigation';
 
-//import Settings from './src/screens/Settings';
+
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk';
+import storage from 'redux-persist/lib/storage'
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistStore, persistReducer } from 'redux-persist'
+import { applyMiddleware, compose, createStore } from 'redux'
+
+//Screens
 import Home from './src/screens/Home';
 import Login from './src/screens/LoginScreen';
-//import OrderList from './src/screens/OrderListScreen';
 
+//Reducers
+import reducers from './src/redux/reducers'
+
+//import { createLogger } from 'redux-logger'
+
+
+const persistedReducer = persistReducer({ key: 'root', storage, blacklist: ['filter', 'modals'] }, reducers)
 
 const AppNavigator = createStackNavigator({
   LoginScreen: { screen: Login },
-  //SettingScreen: { screen: Settings },
   HomeScreen: { screen: Home },
-  //OrderListScreen: { screen: OrderList },
   initialRouteName: 'LoginScreen',
   });
 
+  function configureStore (initialState) {
+    const enhancer = compose(
+      //applyMiddleware(thunk, loggerMiddleware)
+      applyMiddleware(thunk)
+    )
+    return createStore(persistedReducer, initialState, enhancer)
+  }
+
+const initialState = {}
+export const store = configureStore(initialState)
 
 export default class App extends Component {
   render() {
     return (
-      <AppNavigator />
+      <Provider store={store}>
+        <AppNavigator />
+      </Provider>
     );
   }
 }

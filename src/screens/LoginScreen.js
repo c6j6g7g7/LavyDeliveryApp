@@ -1,115 +1,98 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, KeyboardAvoidingView, Image, ImageBackground } from "react-native";
-import {  FormInput, Button } from "react-native-elements";
+import { Platform, Image, ImageBackground } from "react-native";
+import { connect } from 'react-redux';
+
+//Componetes
+import Input from '../components/Input'
+import Button from '../components/Button'
+
+//Actions
+import { login } from '../redux/actions';
+
+//Estilos
+import { container, container_logon, logo }  from '../styles/styles';
+
 
 export class LoginScreen extends Component {
-//https://stackoverflow.com/questions/44538072/react-navigation-onpress-in-own-function
-//https://github.com/Around25/react-native-navigation-example/blob/master/src/Root.js
   constructor(props) {
     super(props);
 
-    this.onLoginApp = this.onLoginApp.bind(this);
+    this.state = {
+      email: 'julian.giraldo@lavy.com.co',
+      password: 'dr#4JVnyDx',
+      platform: 'Android',
+      from: 'Android',
+      loader: false
+    }
+
   }
 
-  async onLoginApp() {
-    fetch('http://test.lavy.com.co/api/CarrierApi/login', {
-      method: 'POST',
-      headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-      //body: {
-        //"args": {
-        //"email": "javier.marmol@lavy.com.co",
-        //"password": "Lavy2017",
-        "email": "julian.giraldo@lavy.com.co",
-        "password": "hCe4hT=qk/WX",
-        "from": "Android"
-      }),
-
-
-    }).then((response) => response.json()).then((responseJson) => {
-          // you'll get the response in responseJson
-          this.setState({
-           data: responseJson
-         });
-          //alert("OK-1: Mensaje call POST-> Status:"+this.state.data.status+"--Token:"+this.state.data.api_token);
-          alert("OK-2: Mensaje call POST-> Status:"+this.state.data.status+"-Message:"+this.state.data.data.message);
-
-
-      })
-      .catch((error) => {
-        this.setState({
-         data: error
-       });
-          //you will get error here.
-          alert("NOT OK: Alerta JS......"+error);
-      });
-
-    //this.props.navigation.navigate('OrderListScreen');
-    this.props.navigation.navigate('HomeScreen');
+  _getDisabled(){
+    let disabled = false;
+    if(!this.state.email){
+      disabled = true;
+    }
+    if(!this.state.password || this.state.password.length <= 5){
+      disabled = true;
+    }
+    if(this.state.loader){
+      disabled = true;
+    }
+    return disabled;
   }
+
+  _login(){
+    this.setState({ loader: true })
+    this.props.login(this.state).then(($result) => {
+      //Todo salido bien, eviamos a otra vista donde veremos
+      this.props.navigation.navigate('HomeScreen');
+      this.setState({ loader: false });
+    }).catch((err) => {
+      Alert.alert('Error', err.message);
+    })
+  }
+
 
 
   render() {
-//    const { navigate } = this.props.navigation;
-/*
-<FormInput placeholder="Nombre y Apellido"
-inputStyle={{
-
-        backgroundColor: "#fff",
-        borderColor: "#fd76bb",
-        borderWidth: 2,
-        borderRadius: 15,
-        color: 'orange',
-        color: 'orange'
-
-      }} />
-*/
     return (
-
-        <ImageBackground source={require('../images/background.jpg')} style={styles.container} >
-          <Image source={require('../images/LOGO.png')} style={styles.logo} />
-          <FormInput placeholder="Nombre y Apellido"
-           />
-
-          <FormInput placeholder="Correo" />
-
-          <FormInput secureTextEntry placeholder="Móvil" />
-
-          <FormInput secureTextEntry placeholder="Password..." />
-
-          <Button large style={styles.buttonss} onPress={this.onLoginApp} title="COMPLETAR" />
+        <ImageBackground source={require('../images/background.jpg')} style={container_logon} >
+          <Image source={require('../images/LOGO.png')} style={logo} />
+          <Input
+            placeholder="Correo electronico"
+            onChangeText={(email) => this.setState({email})}
+            value={this.state.email}
+            />
+            <Input
+              secureTextEntry={true}
+              placeholder="Contraseña"
+              onChangeText={(password) => this.setState({password})}
+              value={this.state.password}
+            />
+            <Button
+              onPress={this._login.bind(this)}
+              disabled={this._getDisabled()}
+              text="Comenzar"
+            />
         </ImageBackground>
-
     )
   }
 
 }
 
 
-const styles = StyleSheet.create({
-  container: {
-      flex:1,
-      width: '100%',
-      height: '100%',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: 'rgba(0,0,0,0)',
-    },
-    logo: {
-      width: '35%',
-      height: '10%',
-      marginBottom: 20,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    buttonss: {
-      backgroundColor: '#AABBBB',
-      color: 'white',
-    },
-});
+function MapStateToProps(state){
+	return {
+		//user : state.session && state.session.user ? state.session.user : false
+    session : state.session  ? state.session : false
+	}
+}
 
+/*const mapDispatchToProps = dispatch => {
+  return {
+      fetchData: () => dispatch(fetchData())
+  }
+}*/
 
-export default LoginScreen;
+//export default connect(MapStateToProps, mapDispatchToProps, {  login })(Login);
+export default connect(MapStateToProps, { login })(LoginScreen);

@@ -1,10 +1,13 @@
 // Settings.js
 
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image, ListView, ScrollView, Alert } from 'react-native';
-import { Card, ListItem, Button, Icon, Badge } from 'react-native-elements';
+import { View, Text, ScrollView } from 'react-native';
+import {  Badge } from 'react-native-elements';
 import Timeline from 'react-native-timeline-listview';
 
+//import Timeline from '../components/TimelineCustom'
+
+import { box }  from '../styles/styles';
 
 export class OrderListScreen extends Component {
 
@@ -16,22 +19,12 @@ export class OrderListScreen extends Component {
   };
 
 
-  /*constructor(props) {
-    super(props);
-
-    this.onLoginApp = this.onLoginApp.bind(this);
-  }*/
     constructor(props){
-         //super()
          super(props);
-
-
-
 
          this.onEventPress = this.onEventPress.bind(this);
 
          this.data = [
-           //{otroDato: 'order1' ,time: '09:00', title: 'Calle 119 #13-22', description: 'Andres Restrepo', icon: require('../images/icono-box.png')},
            {coordinates: [
              {
                latitude: 4.6986606,
@@ -78,9 +71,8 @@ export class OrderListScreen extends Component {
 
   render() {
     return (
-
         <ScrollView >
-        <View style={styles.box}>
+        <View style={box}>
         <Badge
           value={1}
           textStyle={{ color: 'rgba(63,191,191,1)' }}
@@ -88,41 +80,18 @@ export class OrderListScreen extends Component {
         <Text>Dirigete a Tus servicios</Text>
         </View>
 
-           <Timeline
-            onEventPress={this.onEventPress}
-            data={this.data}
-            innerCircle={'icon'}
-            circleSize={30}
-            circleColor='rgba(255,255,255,1)'
-          />
+        <Timeline
+           onEventPress={this.onEventPress}
+           data={this.data}
+           innerCircle={'icon'}
+           circleSize={30}
+           circleColor='rgba(255,255,255,1)'
+         />
+
          </ScrollView>
 
       );
     }
   }
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    image: {
-      width: 300,
-      height: 150
-    },
-    icon: {
-      position: 'relative',
-      height: 45,
-      width: 45,
-      alignItems: 'center',
-
-    },
-    box: {
-      flex: 1,
-      flexDirection: 'row'
-    },
-  });
 
 export default OrderListScreen;
