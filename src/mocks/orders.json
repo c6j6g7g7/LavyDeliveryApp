@@ -1,0 +1,46 @@
+[
+  {
+    "coordinates":
+      [ { "latitude": 4.6986606, "longitude": -74.0422231 },{ "latitude": 4.706332, "longitude": -74.050744, }] ,
+    "time": "09:00",
+    "title": "Calle 119 #13-22",
+    "description": "Andres Restrepo",
+    "icon": "../images/icono-box.png"
+  },
+  {
+    "coordinates":
+    [ { "latitude": 4.6986606, "longitude": -74.0422231 },{ "latitude": 4.5973868, "longitude": -74.0780794 }],
+    "time": "10:45",
+    "title": "Av. 7 # 102B-14",
+    "description": "Lina Orozco",
+    "icon": "../images/icono-box.png"
+  },
+  {
+    "coordinates":
+    [ { "latitude": 4.6986606, "longitude": -74.0422231 },{ "latitude": 4.737162, "longitude": -74.0421526 }],
+    "time": "12:00",
+    "title": "Calle 156 #70-22",
+    "description": "Sofia Contreras",
+    "icon": "../images/icono-box.png"},
+
+  {"coordinates": [{
+    "latitude": 4.6986606,
+    "longitude": -74.0422231
+  },{ "latitude": 4.7085854, "longitude": -74.0448146 }],"time": "14:00", "title": "Cra 15 # 57-30 apto 601", "description": "Pedro Navajas", "icon": "../images/icono-box.png"},
+  ,{"coordinates": [{
+    "latitude": 4.6986606,
+    "longitude": -74.0422231
+  },{ "latitude": 4.6405873, "longitude": -74.0672934 }],"time": "16:30", "title": "Calle 155 # 53-53", "description": "Celia Cruz", "icon": "../images/icono-box.png"},
+  {"coordinates": [{
+    "latitude": 4.6986606,
+    "longitude": -74.0422231
+  },{ "latitude": 4.7517136, "longitude": -74.0485711 }],"time": "17:30", "title": "Auto Norte # 170-20", "description": "Ramoncito", "icon": "../images/icono-box.png"},
+  {"coordinates": [{
+    "latitude": 4.6986606,
+    "longitude": -74.0422231
+  },{ "latitude": 4.7032101, "longitude": -74.1507226 }],"time": "18:00", "title": "Calle 200 # 59-17", "description": "Richard Nixon", "icon": "../images/icono-box.png"},
+  {"coordinates": [{
+    "latitude": 4.6986606,
+    "longitude": -74.0422231
+  },{ "latitude": 4.5808716, "longitude": -74.1040072 }],"time": "20:30", "title": "Av primera de Mayo # 13-13", "description": "Pablo Neruda", "icon": "../images/icono-box.png"}
+]
