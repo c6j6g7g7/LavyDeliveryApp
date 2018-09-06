@@ -1,7 +1,9 @@
 //export const API 	   = 'http://api.herelodin.com/v1.0/';
-export const API 	   = 'http://test.lavy.com.co/api/CarrierApi/';
-export const API_LOGIN = '${API}login';
+export const API 	   = 'http://test.lavy.com.co/api/CarrierApi';
+export const API_LOGIN = '/login';
 export const REDCOLOR = '#E40046'
+
+
 
 
 //export const API 	   = 'http://test.lavy.com.co/api/CarrierApi/';

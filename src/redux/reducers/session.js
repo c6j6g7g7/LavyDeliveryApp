@@ -13,10 +13,11 @@ const session = (state = { }, action) => {
 			return { };
 		}
 		case SET_SESSION : {
-			const { token, user } = action
+			const { token, user, email } = action
 			return {
 				token,
-				user
+				user, 
+				email
 			}
 		}
 		default: {

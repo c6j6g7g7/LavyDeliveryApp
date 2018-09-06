@@ -3,7 +3,7 @@ import { FETCHING_DATA, FETCHING_DATA_SUCCESS, FETCHING_DATA_FAILURE } from '../
 
 import { Alert } from 'react-native'
 
-import { API_LOGIN, API_ORDERLIST } from '../../config/const';
+import { API, API_LOGIN, API_ORDERLIST } from '../../config/const';
 
 import {
     SET_SESSION
@@ -45,13 +45,15 @@ export const fetchData = () => {
 
 export const login = ({ email, password }) => (dispatch, getState) => {
 
-  this.state = {
+  /*this.state = {
     data: ''
 
-  }
+  }*/
+
+
   return new Promise((resolve, reject) => {
-    fetch('http://test.lavy.com.co/api/CarrierApi/login', {
-    //fetch(API_LOGIN, {
+    //fetch('http://test.lavy.com.co/api/CarrierApi/login', {
+    fetch(API+API_LOGIN, {
       method: 'POST',
       headers: {
           'Accept': 'application/json',
@@ -66,29 +68,36 @@ export const login = ({ email, password }) => (dispatch, getState) => {
     })
     .then((response) => response.json()).then((responseJson) => {
 
-      Alert.alert("sssss",API_LOGIN);
+      //Alert.alert("sssss",this.getState());
 
       if(responseJson.status){
         //si todo sale bien guardamos el user y token en localstore
         dispatch({
           type: SET_SESSION,
           user: responseJson.data.name,
-          token: responseJson.api_token
+          token: responseJson.api_token,
+          email: responseJson.data.email,
         })
+        return resolve(responseJson)
       }else {
         dispatch({
           type: CLEAR_SESION
         })
+        return reject({ error : true, message : responseJson.data});
       }
 
        //return resolve(responseJson.data)
-     return resolve(responseJson)
+
     })
-    .catch( (err) => {
-      if(err.response && err.response.data)
-          return reject(err.response.data)
+    .catch( (err) =>  {
+
+      Alert.alert("Error en action::",err.data)
+      if(err && err.data)
+          return reject(err.data)
       else
           return reject({ error : true, message : "Ocurrio un error por favor intenta más tarde."});
+
+
 
       });
   });

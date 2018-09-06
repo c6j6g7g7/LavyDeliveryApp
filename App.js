@@ -37,6 +37,21 @@ const AppNavigator = createStackNavigator({
   }
 
 const initialState = {}
+/*const initialState = {
+  user: {
+    name: null,
+    last_name: null,
+    email: null,
+    avatar: null,
+    user_profile_id: null,
+    api_token: null
+  },
+  orderList: [],
+  order:{
+
+  },
+}*/
+
 export const store = configureStore(initialState)
 
 export default class App extends Component {

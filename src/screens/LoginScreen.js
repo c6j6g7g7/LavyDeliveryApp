@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, Image, ImageBackground } from "react-native";
+import { Platform, Image, ImageBackground, Alert } from "react-native";
 import { connect } from 'react-redux';
 
 //Componetes
@@ -11,6 +11,9 @@ import { login } from '../redux/actions';
 
 //Estilos
 import { container, container_logon, logo }  from '../styles/styles';
+
+
+
 
 
 export class LoginScreen extends Component {
@@ -47,6 +50,8 @@ export class LoginScreen extends Component {
       //Todo salido bien, eviamos a otra vista donde veremos
       this.props.navigation.navigate('HomeScreen');
       this.setState({ loader: false });
+      Alert.alert('Estado:::;;', this.state.session.user);
+
     }).catch((err) => {
       Alert.alert('Error', err.message);
     })
