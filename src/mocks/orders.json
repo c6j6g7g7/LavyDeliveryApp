@@ -21,13 +21,16 @@
     "time": "12:00",
     "title": "Calle 156 #70-22",
     "description": "Sofia Contreras",
-    "icon": "../images/icono-box.png"},
-
+    "icon": "../images/icono-box.png"
+  },
+  {"coordinates": 
+    [{ "latitude": 4.6986606, "longitude": -74.0422231 },{ "latitude": 4.7085854, "longitude": -74.0448146 }],
+  "time": "14:00", 
+  "title": "Cra 15 # 57-30 apto 601", 
+  "description": "Pedro Navajas", 
+  "icon": "../images/icono-box.png"
+  },
   {"coordinates": [{
-    "latitude": 4.6986606,
-    "longitude": -74.0422231
-  },{ "latitude": 4.7085854, "longitude": -74.0448146 }],"time": "14:00", "title": "Cra 15 # 57-30 apto 601", "description": "Pedro Navajas", "icon": "../images/icono-box.png"},
-  ,{"coordinates": [{
     "latitude": 4.6986606,
     "longitude": -74.0422231
   },{ "latitude": 4.6405873, "longitude": -74.0672934 }],"time": "16:30", "title": "Calle 155 # 53-53", "description": "Celia Cruz", "icon": "../images/icono-box.png"},
