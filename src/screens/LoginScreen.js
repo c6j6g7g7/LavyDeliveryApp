@@ -48,9 +48,10 @@ export class LoginScreen extends Component {
     this.setState({ loader: true })
     this.props.login(this.state).then(($result) => {
       //Todo salido bien, eviamos a otra vista donde veremos
-      this.props.navigation.navigate('HomeScreen');
+      Alert.alert('EL estado:', this.props.session.token);
+      this.props.navigation.navigate('HomeScreen', {token: this.props.session.token});
       this.setState({ loader: false });
-      Alert.alert('Estado:::;;', this.state.session.user);
+      //Alert.alert('Estado:::;;PASO', this.props.session.user);
 
     }).catch((err) => {
       Alert.alert('Error', err.message);
@@ -60,9 +61,10 @@ export class LoginScreen extends Component {
 
 
   render() {
+    //<Image source={require('../images/LOGO.png')} style={logo} />  
     return (
         <ImageBackground source={require('../images/background.jpg')} style={container_logon} >
-          <Image source={require('../images/LOGO.png')} style={logo} />
+          
           <Input
             placeholder="Correo electronico"
             onChangeText={(email) => this.setState({email})}

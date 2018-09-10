@@ -4,4 +4,5 @@ export const SET_USER 		= 'SET_USER';
 
 
 export const SET_ORDERS = 'SET_ORDERS'
+export const RECEIVE_ORDERS = 'RECEIVE_ORDERS'
 export const CLEAR_ORDERS = 'CLEAR_ORDERS'

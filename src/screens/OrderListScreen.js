@@ -1,13 +1,17 @@
 // Settings.js
 
 import React, { Component } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, Alert } from 'react-native';
 import {  Badge } from 'react-native-elements';
 import Timeline from 'react-native-timeline-listview';
+
+import { connect } from 'react-redux';
 
 //import Timeline from '../components/TimelineCustom'
 
 import { box }  from '../styles/styles';
+
+import { fetchOrders } from '../redux/actions';
 
 export class OrderListScreen extends Component {
 
@@ -21,10 +25,10 @@ export class OrderListScreen extends Component {
 
     constructor(props){
          super(props);
-
+        //Alert.alert("INGRESOOOO",this.props.);
          this.onEventPress = this.onEventPress.bind(this);
-
-         this.data = [
+         this.dataTime = [];
+         /*this.data = [
            {coordinates: [
              {
                latitude: 4.6986606,
@@ -62,12 +66,53 @@ export class OrderListScreen extends Component {
              latitude: 4.6986606,
              longitude: -74.0422231
            },{ latitude: 4.5808716, longitude: -74.1040072 }],time: '20:30', title: 'Av primera de Mayo # 13-13', description: 'Pablo Neruda', icon: require('../images/icono-box.png')}
-         ]
+         ]*/
+         //const { dispatch, selectedSubreddit } = this.props
+         
+         //this.props.login(this.state)
+         //dispatch(fetchOrders(Date.now()));
        }
+
+       componentWillMount(){
+        
+        this.props.fetchOrders(Date.now());
+
+
+       }
+
        onEventPress(data){
-             this.setState({selected: data, visible:true})
+             //this.setState({selected: data, visible:true})
              this.props.navigation.navigate('RecogerScreen', {coordinates: data.coordinates, directions: data.title});
            }
+
+      getOrder() {
+      //Alert.alert("getOrder()");
+      const {data} = this.props.data.data;
+      
+      data.map((actor, index) => {
+          this.dataTime.push({
+            time: '17:30',
+            description: actor.office_name,
+            icon: require('../images/icono-box.png')
+          });                          
+          //this.dataTime.title= ;
+          //this.dataTime.description= actor.customer_name;
+          //this.dataTime.icon = require('../images/icono-box.png');
+          //this.
+      })
+      console.log("this.dataTime->"+JSON.stringify(this.dataTime));
+      return (
+                    <Timeline
+                    onEventPress={this.onEventPress}
+                    data={this.dataTime}
+                    innerCircle={'icon'}
+                    circleSize={30}
+                    circleColor='rgba(255,255,255,1)'
+                  />                        
+                  );
+      
+  }
+
 
   render() {
     return (
@@ -78,15 +123,17 @@ export class OrderListScreen extends Component {
           textStyle={{ color: 'rgba(63,191,191,1)' }}
         />
         <Text>Dirigete a Tus servicios</Text>
+
         </View>
 
-        <Timeline
-           onEventPress={this.onEventPress}
-           data={this.data}
-           innerCircle={'icon'}
-           circleSize={30}
-           circleColor='rgba(255,255,255,1)'
-         />
+        {
+                    //console.log("DIRIGETE-this.props.data.data.data->"+JSON.stringify(this.props.data.data.data) )
+                    }
+         {this.props.data.isFeching && <Text>Loading...</Text>}
+                    {this.props.data.data.message
+                        ? this.getOrder()
+                        : <Text>Sin Datos...</Text>}
+        
 
          </ScrollView>
 
@@ -94,4 +141,46 @@ export class OrderListScreen extends Component {
     }
   }
 
-export default OrderListScreen;
+  
+
+  /*function MapStateToProps(state){
+  	return {
+  		data: state.fetchOrders && state.fetchOrders.isFeching ? state.fetchOrders.data : false,
+      isFeching: state.fetchOrders.isFeching//data : state.data  ? Alert.alert(state.data) : false
+  	}
+  }
+
+  const mapDispatchToProps = dispatch => {
+    return {
+        fetchOrders: () => dispatch(fetchOrders())
+    }
+  }*/
+
+
+  const mapStateToProps = state => {
+    
+     console.log("SESSION->"+JSON.stringify(state.session) )
+     //console.log("STATE->"+JSON.stringify(state.fetchOrders) )
+      
+    return {
+        data: state.fetchOrders,
+        status: state.status,
+        message: state.message
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+
+    return {
+      fetchOrders: () => {
+            return dispatch(fetchOrders(Date.now()))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderListScreen);
+
+
+  //export default connect(MapStateToProps, mapDispatchToProps, {  login })(Login);
+  //export default connect(MapStateToProps, mapDispatchToProps)(OrderListScreen);
+//export default OrderListScreen;
