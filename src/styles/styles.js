@@ -86,11 +86,20 @@ export const	logo = {
     },*/
   export const box = {
       flex: 1,
-      flexDirection: 'row'
+			flexDirection: 'row'
+			
     }
 
+		export const badgeText= {
+			fontSize: 18
+		}	
 
-/*	buttonss: {
-		backgroundColor: '#AABBBB',
-		color: 'white',
-	},*/
+		export const loading = {
+			flex:1,
+			fontSize: 38,
+			alignItems: 'center',
+      justifyContent: 'center'
+
+		}
+
+		

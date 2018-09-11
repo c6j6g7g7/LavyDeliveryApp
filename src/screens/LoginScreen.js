@@ -48,8 +48,8 @@ export class LoginScreen extends Component {
     this.setState({ loader: true })
     this.props.login(this.state).then(($result) => {
       //Todo salido bien, eviamos a otra vista donde veremos
-      Alert.alert('EL estado:', this.props.session.token);
-      this.props.navigation.navigate('HomeScreen', {token: this.props.session.token});
+      //Alert.alert('EL estado:', this.props.session.token);
+      this.props.navigation.navigate('HomeScreen');
       this.setState({ loader: false });
       //Alert.alert('Estado:::;;PASO', this.props.session.user);
 
@@ -70,6 +70,9 @@ export class LoginScreen extends Component {
             onChangeText={(email) => this.setState({email})}
             value={this.state.email}
             />
+            {
+              //props.error ? <Text>{props.error}</Text> : null
+              }
             <Input
               secureTextEntry={true}
               placeholder="Contraseña"

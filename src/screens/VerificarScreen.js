@@ -66,29 +66,12 @@ export class VerificarScreen extends Component {
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity  onPress={() => this.pressTakePhoto()}>
-          <View id="3" style={styles.box}>
-
-            <Image source={require('../images/icon-tomar_foto.png')} style={styles.icon} />
-            <Text>3.2 Tomar Foto</Text>
-
-          </View>
-            </TouchableOpacity>
-
-          <View id="4" style={styles.box}>
-          <TouchableOpacity  onPress={() => this.pressClothes()}>
-            <Image source={require('../images/icon-pesar_prendas.png')} style={styles.icon} />
-            <Text>3.3 Pesar Prendas</Text>
-            </TouchableOpacity>
-          </View>
-
           <View id="5" style={styles.box}>
           <TouchableOpacity  onPress={() => this.pressCheckOrder()}>
           <Image source={require('../images/icon-confirmar_orden.png')} style={styles.icon} />
-            <Text >3.4 Confirmar Orden</Text>
+            <Text >3.2 Confirmar Orden</Text>
             </TouchableOpacity>
           </View>
-
     </View>
   )
   }

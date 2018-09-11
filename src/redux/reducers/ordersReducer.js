@@ -7,8 +7,6 @@ const initialState =  {
 }
 
 export default ordersReducer = (state = initialState, action) => {
-
-//export default dataReducer = (state = initialState, action) => {
 	switch(action.type) {
         case FETCHING_DATA:
             return {
