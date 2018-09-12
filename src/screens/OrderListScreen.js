@@ -70,13 +70,12 @@ export class OrderListScreen extends Component {
     return (
         <ScrollView >
         <View style={box}>
-        <Badge
-          value={1}
-          textStyle={{ color: 'rgba(63,191,191,1)' }}
-        />
-      
-        <Text style={badgeText}>Dirigete a Tus servicios</Text>
-        <Text style={badgeText}>{this.props.session.token}}</Text>
+          <Badge
+            value={1}
+            textStyle={{ color: 'rgba(63,191,191,1)' }}
+          />
+        
+          <Text style={badgeText}>Dirigete a Tus servicios</Text>        
         </View>
 
         {

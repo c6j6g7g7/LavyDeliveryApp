@@ -9,6 +9,7 @@ import { createBottomTabNavigator, TabBarBottom } from 'react-navigation';
 import OrderList from './OrderListScreen';
 import Recoger from './RecogerScreen';
 import Verificar from './VerificarScreen';
+import Confirmar from './ConfirmarOrdenScreen';
 
 export class Home extends Component {
   render() {
@@ -45,6 +46,18 @@ const TabNavigator = createBottomTabNavigator({
         )
       },
       Label: 'Prueba2',
+ },
+ ConfirmarOrdenScreen: {
+  screen: Confirmar,
+  navigationOptions: { title: '3. Verificar',
+    tabBarIcon: () => (
+      <Image style={styles.icon}
+        source={require('../images/icon-verificar.png')}
+
+        />
+      )
+    },
+    Label: 'Prueba3',
  },
  VerificarScreen: {
    screen: Verificar,
