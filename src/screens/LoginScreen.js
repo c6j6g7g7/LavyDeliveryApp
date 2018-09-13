@@ -64,7 +64,7 @@ export class LoginScreen extends Component {
     //<Image source={require('../images/LOGO.png')} style={logo} />  
     return (
         <ImageBackground source={require('../images/background.jpg')} style={container_logon} >
-          <Image source={require('../images/LOGO.png')} style={logo} />
+          
           <Input
             placeholder="Correo electronico"
             onChangeText={(email) => this.setState({email})}

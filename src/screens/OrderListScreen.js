@@ -45,8 +45,8 @@ export class OrderListScreen extends Component {
         data.map((order, index) => {
             this.dataTime.push({
               time: order.pickup_schedule.start_time,
-              title: order.order_state.name,
-              description: order.pickup_address.address +' '+ order.pickup_address.address_detail,
+              title: order.user.name +" "+order.user.last_name,
+              description: order.pickup_address.address +' '+ order.pickup_address.address_detail+" Estado:"+order.order_state.name,
               icon: require('../images/icono-box.png'),
               coordinates:
                 [ { latitude: 4.6986606, longitude: -74.0422231 },
