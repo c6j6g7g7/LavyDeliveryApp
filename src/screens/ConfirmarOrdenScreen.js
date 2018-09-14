@@ -4,6 +4,10 @@ import { ScrollView, View, Text} from 'react-native';
 import { connect } from 'react-redux';
 
 import Actions from '../redux/ActionTypes';
+
+
+
+
 //import CounterComponent from '../Components/CounterComponent';
 
 //https://medium.com/@smile2gether/react-redux-todo-list-ccf63b622339
@@ -49,6 +53,11 @@ class ConfirmarOrdenScreen extends Component {
         super(props);
     }
 
+    componentWillMount(){        
+        //console.log("componentWillMount=>"+this.props.session.token)
+        this.props.fetchOrderDetails(this.props.session.token, this.props.);
+      }
+
     render() {
         return (
             <ScrollView >
@@ -76,20 +85,24 @@ class ConfirmarOrdenScreen extends Component {
     }
 }
 
-
-
-
-/*
 const mapStateToProps = (state) => {
-    console.log("STATE=>"+JSON.stringify(state.currentOrder));
-    return { quantity: state.currentOrder.quantity }
+    //console.log("STATE=>"+JSON.stringify(state.currentOrder));
+    return { orderDetails: state.currentOrder.currentOrder }
 };
 
-const mapDispatchToProps = (dispatch) => ({
-    increment: () => dispatch({type: COUNTER_INCREMENT}),
-    decrement: () => dispatch({type: COUNTER_DECREMENT}),
-});
+const mapDispatchToProps = dispatch => {
+    return {
+		fetchOrderDetails: (token,id) => {
+			 return dispatch(fetchOrderDetails(token, id));
+        }
+        /*,
+		decrement: () => {
+			return dispatch(decrement());
+		}*/			
+    }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(ConfirmarOrdenScreen)*/
+//export default connect(mapStateToProps, mapDispatchToProps)(Item);
+export default connect(mapStateToProps, mapDispatchToProps)(ConfirmarOrdenScreen)
 
-export default ConfirmarOrdenScreen;
+//export default ConfirmarOrdenScreen;

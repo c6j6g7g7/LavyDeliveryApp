@@ -17,6 +17,10 @@ import {
     SET_SESSION
 } from '../ActionTypes';
 
+import {
+  COUNTER_DECREMENT, COUNTER_INCREMENT
+} from '../ActionTypes';
+
 //PARA PRUEBAS
 import { Alert } from 'react-native'
 
@@ -85,6 +89,10 @@ export const getDataPeopleSuccess = (data, status, message) => {
   }
 }
 
+
+
+
+
 export const getDateFailure = (data) => {
   return {type: FETCHING_DATA_FAILURE}
 }
@@ -103,8 +111,7 @@ export const fetchData = () => {
 
 }
 
-//export const fetchDataActors = () => {
-  export const fetchOrders = (date, token) => { 
+export const fetchOrders = (date, token) => { 
     //console.log("ACTIONS-fetchOrders->"+token); 
     return (dispatch) => {
       
@@ -121,27 +128,52 @@ export const fetchData = () => {
 }
 
 
+// Action to Order Details
+export const fetchOrderDetails = (token,id) => { 
+  //console.log("ACTIONS-fetchOrders->"+token); 
+  return (dispatch) => {
+    
+    dispatch(getData());
 
-
-
-///
-export const orderReducer = (state = {quantity: 0}, action) => {
-  //console.log("STATE=>"+JSON.stringify(state.currentOrder));
-  switch (action.type) {
-      //case Actions.COUNTER_INCREMENT:
-      
-      case COUNTER_INCREMENT:
-          console.log("REDUVCERS->>"+JSON.stringify(action.state));
-          return Object.assign({}, state, {
-              quantity: state.quantity + 1
-          });
-      case COUNTER_DECREMENT:
-          console.log("REDUVCERS->>"+JSON.stringify(action.state));
-          return Object.assign({}, state, {
-             quantity: state.quantity - 1
-          });
-      default:
-          return state;
+    fetchOrdersDetailsAPI(token, id)
+      .then(([response, json]) => {
+        //console.log("fetchDataActors===>>"+JSON.stringify(json) )
+        dispatch(getOrderDetailsSuccess(json))
+    })
+    .catch((error) => console.log(error))
   }
-  console.log("PASO_REDUVCERS->>");
+}
+
+
+export const getOrderDetailsSuccess = (data, status, message) => {
+  return {type: FETCHING_DATA_ORDER_DETAILS_SUCCESS,              
+      data,
+      status,
+      message
+  }
+}
+
+
+export const increment = () => { 
+  //console.log("ACTIONS-fetchOrders->"+token);
+  console.log("ACTION_INDEX->>"); 
+  return (dispatch) => {
+    
+    dispatch(incrementItem())
+
+  }
+}
+
+export const decrement = () => {
+  return (dispatch) => {
+    dispatch(decrementItem());
+  }
+}
+
+const incrementItem = () => {
+  return {type: COUNTER_INCREMENT}
+}
+
+const decrementItem = () => {
+  return {type: COUNTER_DECREMENT}
 }

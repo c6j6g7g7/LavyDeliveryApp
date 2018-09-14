@@ -86,12 +86,16 @@ export const	logo = {
     },*/
   export const box = {
       flex: 1,
-			flexDirection: 'row'
+			flexDirection: 'row',
+			justifyContent: 'space-around',
+			alignItems: 'center'
 			
     }
 
 		export const badgeText= {
-			fontSize: 18
+			fontSize: 18,
+			
+			alignItems: 'center'
 		}	
 
 		export const loading = {

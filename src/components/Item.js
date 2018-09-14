@@ -5,10 +5,8 @@ import {
 	button_add,
 	button_text
 } from '../styles/styles';
-import {
-	REDCOLOR
-} from '../config/const';
 
+import { increment, decrement } from '../redux/actions';
 
 import { connect } from 'react-redux';
 
@@ -18,19 +16,11 @@ import { COUNTER_DECREMENT, COUNTER_INCREMENT } from '../redux/ActionTypes';
 class Item extends Component{
 
 	onPressAdd(){
-		/*if(this.props.onPressAdd)
-			this.props.onPressAdd();
-		else
-			this.props.quantity++;*/
-		console.log("onPressAdd()=>"+this.props.quantity);		
-		this.props.increment;
+		this.props.increment();
 	}
 
 	onPressSubtract(){
-		/*if(this.props.onPressSubtract)
-			this.props.onPressSubtract();
-		else*/
-		this.props.decrement;
+		this.props.decrement();
 	}
 
 	_getBackground(){
@@ -64,15 +54,19 @@ class Item extends Component{
 
 
 const mapStateToProps = (state) => {
-    console.log("STATE=>"+JSON.stringify(state.currentOrder));
+    //console.log("STATE=>"+JSON.stringify(state.currentOrder));
     return { quantity: state.currentOrder.quantity }
 };
 
-const mapDispatchToProps = (dispatch) => ({
-    increment: () => dispatch({type: COUNTER_INCREMENT}),
-    decrement: () => dispatch({type: COUNTER_DECREMENT}),
-});
+const mapDispatchToProps = dispatch => {
+    return {
+		increment: () => {
+			 return dispatch(increment());
+		},
+		decrement: () => {
+			return dispatch(decrement());
+		}			
+    }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Item)
-
-//export default Item;
+export default connect(mapStateToProps, mapDispatchToProps)(Item);

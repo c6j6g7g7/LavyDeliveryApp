@@ -2,12 +2,24 @@
 export const API 	   = 'http://test.lavy.com.co/api/CarrierApi';
 
 
-export const REDCOLOR = '#E40046'
-
 //Login
 export const API_LOGIN = '/login';
+
+//Logout
+export const API_LOGOUT = '/logout'
+
 //Orders
 export const API_ORDERLIST = '/getOrders';
+
+//Order Details
+export const API_ORDERDETAILS = '/getOrderDetails';
+
+//Get clothes
+export const API_CLOTHES = '/getClothes';
+
+
+
+export const REDCOLOR = '#E40046'
 
 //Constantes actions
 export const FETCHING_DATA = "FETCHING_DATA"
