@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 
 import { box, badgeText, loading }  from '../styles/styles';
 
-import { fetchOrders } from '../redux/actions';
+import { fetchOrders, fetchOrderDetails } from '../redux/actions';
 
 export class OrderListScreen extends Component {
 
@@ -35,6 +35,8 @@ export class OrderListScreen extends Component {
 
        onEventPress(data){
           //this.setState({selected: data, visible:true})
+          //console.log("DATA=>"+JSON.stringify(data));
+          this.props.fetchOrderDetails(this.props.session.token, data.id_order);
           this.props.navigation.navigate('RecogerScreen', {coordinates: data.coordinates, directions: data.title});
         }
 
@@ -51,6 +53,7 @@ export class OrderListScreen extends Component {
               coordinates:
                 [ { latitude: 4.6986606, longitude: -74.0422231 },
                   { latitude: parseFloat(order.pickup_address.lat), longitude: parseFloat(order.pickup_address.long) }] ,
+              id_order: order.id    
             });                          
         })
       //console.log("this.dataTime->"+JSON.stringify(this.dataTime));
@@ -102,7 +105,8 @@ export class OrderListScreen extends Component {
         data: state.fetchOrders,
         status: state.status,
         message: state.message,
-        session: state.session
+        session: state.session,
+        currentOrder: state.fetchOrderDetails
     }
 }
 
@@ -111,8 +115,11 @@ const mapDispatchToProps = dispatch => {
     return {
       fetchOrders: (date, token) => {
           //console.log("SCREEN-mapDispatchToProps->"+token )
-            return dispatch(fetchOrders(date, token))
-        }
+          return dispatch(fetchOrders(date, token))
+      },
+      fetchOrderDetails: (token, id_order) => {
+        return dispatch(fetchOrderDetails(token, id_order));  
+      }  
     }
 }
 

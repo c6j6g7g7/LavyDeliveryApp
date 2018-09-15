@@ -54,9 +54,31 @@ class ConfirmarOrdenScreen extends Component {
     }
 
     componentWillMount(){        
-        //console.log("componentWillMount=>"+this.props.session.token)
-        this.props.fetchOrderDetails(this.props.session.token, this.props.);
+        //console.log("componentWillMount=>"+JSON.stringify(this.props))
+  
       }
+
+      getClothesFor() {
+        //this.dataTime = [];
+        
+        const {orderDetail} = this.props;
+      
+        //console.log("getClothesFor()=>"+JSON.stringify(orderDetail.orderDetail.order_details))
+return
+        orderDetail.orderDetail.order_details.map((order, index) => {
+      //      console.log("getClothesFor-map()=>"+JSON.stringify(order))
+            //console.log("getClothesFor-map().order_amount=>"+order.order_amount)
+            return(
+                
+                    <Text>{order.clothes.name} - {order.order_amount}</Text>
+                
+                 
+                    
+            );                       
+        })
+      //console.log("this.dataTime->"+JSON.stringify(this.dataTime));
+        
+      }  
 
     render() {
         return (
@@ -64,6 +86,18 @@ class ConfirmarOrdenScreen extends Component {
                 <View style={wrapper}>   
                     <Text style={title}>Detalle orden</Text>
                     <Text style={subTitle}>Modificar Orden</Text>
+                    
+                    {this.props.orderDetail.orderDetail.order_details.length
+                        ? this.getClothesFor()
+                        : <Text>Sin Datos...</Text> }
+                    { 
+                        //this.props.orderDetail.length
+                        //? 
+                        //this.getClothesFor()
+                        //: <Text>Sin Datos...</Text>
+                    }
+
+                    
                     <Item 
                         item=" Libras"
                         quantity= {this.props.quantity}
@@ -85,9 +119,14 @@ class ConfirmarOrdenScreen extends Component {
     }
 }
 
+
+
 const mapStateToProps = (state) => {
-    //console.log("STATE=>"+JSON.stringify(state.currentOrder));
-    return { orderDetails: state.currentOrder.currentOrder }
+    //console.log("STATE-CONFIRMAR=>"+JSON.stringify(state.currentOrder.orderDetails));
+    //console.log("STATE-CONFIRMAR--ID=>"+state.currentOrder.orderDetails.id);.order_details.clothes
+    //console.log("STATE-CONFIRMAR--ID--clothes=>"+JSON.stringify(state.currentOrder));
+    //return { orderDetails: state.currentOrder.orderDetails }
+    return { orderDetail: state.currentOrder }
 };
 
 const mapDispatchToProps = dispatch => {

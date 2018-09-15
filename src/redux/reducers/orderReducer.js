@@ -4,7 +4,7 @@ import {
     COUNTER_DECREMENT 
 }  from '../ActionTypes'
 
-const orderReducer = (state = {quantity: 0}, action) => {
+const orderReducer = (state = {orderDetail:{}}, action) => {
     switch (action.type) {
         //case Actions.COUNTER_INCREMENT:
         case COUNTER_INCREMENT:
@@ -18,9 +18,11 @@ const orderReducer = (state = {quantity: 0}, action) => {
                quantity: state.quantity - 1
             }
         case FETCHING_DATA_ORDER_DETAILS_SUCCESS:
+        //console.log("FETCHING_DATA_ORDER_DETAILS_SUCCESS-ACTION=>"+JSON.stringify(action));
+           //console.log("FETCHING_DATA_ORDER_DETAILS_SUCCESS=>"+JSON.stringify(action.data));
             return {
                 ...state,
-                orderDetails
+                orderDetail: action.data//.order
             }
         default:
             return state;
